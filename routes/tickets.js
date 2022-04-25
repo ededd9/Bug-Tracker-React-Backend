@@ -1,6 +1,15 @@
 import { Router } from "express";
 const router = Router();
 import { Ticket } from "../models/tickets.js";
+//GET POST
+router.get("/:id", async (req, res) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id);
+    res.status(200).json(ticket);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 //CREATE POST
 router.post("/", async (req, res) => {
   console.log(req.body);
